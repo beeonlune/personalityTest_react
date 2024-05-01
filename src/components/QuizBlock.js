@@ -59,7 +59,7 @@
     object-fit: cover;
     position: relative;
     left: 900px;
-    bottom: 450px;
+    bottom: 380px;
   `;
 
   const Text = styled.div`
