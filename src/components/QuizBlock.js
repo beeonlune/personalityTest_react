@@ -20,16 +20,26 @@ import ISTP from './ISTP';
 
 const Container = styled.div``;
 const QuestionsBlock = styled.div``;
+const ProgressBar = styled.div`
+  max-width: 98%;
+  width: ${props => props.progress}%;
+  height: 25px;
+  background: #BAA6B8;
+  border-radius: 20px;
+  display: flex;
+  position: relative;
+  margin: 0 10px;
+`;
 const AnswerButton = styled.label`
   display: inline-block;
   border: 1px solid #000;
   padding: 10px;
   cursor: pointer;
-  background-color: ${({ checked }) => (checked ? "#74B72E" : "transparent")};
-  transition: background-color 0.3s;
+  background-color: ${({ checked }) => (checked ? "#BAA6B8" : "transparent")};
+  transition: background-color 0.5s;
 
   &:hover {
-    background-color: #00FF00;
+    background-color: #E7C6FF;
   }
 
   input {
@@ -39,39 +49,40 @@ const AnswerButton = styled.label`
 const ResultBlock = styled.div`
   position: relative;
   flex: 1;
-  top: 13vw; 
+  top: 30px; 
+  width: 400px;
   left: 0.5vw; 
   background-color: white;
   color: black;
   padding: 1vw;
   border-radius: 1vw;
   max-width: 32.5vw; 
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
 `;
 const InformationBlock = styled.div`
-  display: flex;
   justify-content: space-between; 
   position: relative;
-  bottom: 3vw;
-`;
-
-const Image = styled.img`
-  max-width: 45%;
-  object-fit: cover;
-  position: relative;
-  left: 46.5vw;
-  bottom: 21vw;
+  left: 520px;
+  width: 500px;
+  height: 1000px;
+  bottom: 525px;
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
 `;
 
 const Text = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 2vw;
+  padding: 1vw;
   border-radius: 1vw;
   max-width: 65%; 
   position: relative;
   left: -3vw;
   text-align: left;
   overflow: auto; 
-  max-height: 10vw; 
+  max-height: 515px; 
   scrollbar-width: thin; 
   scrollbar-color: #d6dee1 transparent; 
   &::-webkit-scrollbar { 
@@ -91,28 +102,31 @@ const Text = styled.div`
   }
 `;
 const QuestionsContainer = styled.div`
-  position: relative;
-  background-color: #E0B0FF;
-  padding: 1vw;
-  border-radius: 1vw;
-  text-align: center;
-  font-family: 'Bodoni MT';
-  font-size: 150%; 
-  height: 94vh; 
-  width: 97vw; 
+position: relative;
+width: 900px;
+height: 850px;
+left: 175px;
+top: 400px;
+background: rgba(241, 226, 255, 0.7);
+backdrop-filter: blur(50px);
+border-radius: 20px;
+text-align: left;
+font-family: 'Jost';
+font-style: normal;
+font-weight: 500;
+font-size: 25px;
+line-height: 36px;
 
   .question-block {
-    background-color: #f0f0f0;
     padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border: 1px solid black;
-    text-align: center;
+    border-radius: 1px;
+    margin-bottom: 1px;
+    text-align: left;
   }
 
   .question {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 1px;
   }
 
   .answer-container {
@@ -120,6 +134,7 @@ const QuestionsContainer = styled.div`
     justify-content: space-around;
     font-weight: bold; 
   }
+
 `;
 
 const QuizBlock = () => {
@@ -184,23 +199,22 @@ const QuizBlock = () => {
       <div key={startIndex + index} className="question-block">
         <div className="question">{question}</div>
         <div className="answer-container">
-          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "Yes"}>
-            <input
-              type="radio"
-              name={`answer-${startIndex + index}`}
-              value="Yes"
-              checked={answers[currentPage * questionsPerPage + index] === "Yes"}
-              onChange={() => handleAnswer(index, "Yes")}
+        <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "Yes"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-670px', fontSize: '20px', display: 'flex', alignItems: 'center' }}>
+            <input 
+              type="radio" 
+              name={`answer-${index}`} 
+              value="Yes" 
+              checked={answers[currentPage * questionsPerPage + index] === "Yes"} 
+              onChange={() => handleAnswer(index, "Yes")} 
             />
             Yes
           </AnswerButton>
-          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "No"}>
-            <input
-              type="radio"
-              name={`answer-${startIndex + index}`}
-              value="No"
-              checked={answers[currentPage * questionsPerPage + index] === "No"}
-              onChange={() => handleAnswer(index, "No")}
+          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "No"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-1270px', fontSize: '20px', display: 'flex', alignItems: 'center'}}>
+            <input 
+              type="radio"  
+              name={`answer-${index}`} 
+              value="No" checked={answers[currentPage * questionsPerPage + index] === "No"} 
+              onChange={() => handleAnswer(index, "No")} 
             />
             No
           </AnswerButton>
@@ -221,19 +235,16 @@ const QuizBlock = () => {
             {renderQuestions()}
             {currentPage > 0 && (
               <button id="prev-btn" className="button-prev" onClick={handlePrev}>
-                Previous
               </button>
             )}
             {currentPage === Math.ceil(questions.length / questionsPerPage) - 1 ? (
               <button id="next-btn" className="button-next" onClick={handleShowResult}>
-                Show result
               </button>
             ) : (
               <button id="next-btn" className="button-next" onClick={handleNext}>
-                Next
               </button>
             )}
-            <div id="progress-bar">{`Progress: ${currentPage + 1}/${Math.ceil(questions.length / questionsPerPage)}`}</div>
+            <ProgressBar progress={(currentPage + 1) / (Math.ceil(questions.length / questionsPerPage)) * 100} />
           </QuestionsBlock>
         ) : (
             <div>
@@ -297,7 +308,6 @@ const QuizBlock = () => {
                 </div>
             </ResultBlock>
             <InformationBlock>
-            <Image src={`/${selectedType}.png`} alt={selectedType} />
             <Text>
               {selectedType === 'INTJ' && (
                 <div dangerouslySetInnerHTML={{ __html: INTJ }} />
