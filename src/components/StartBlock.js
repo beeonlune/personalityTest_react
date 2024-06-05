@@ -25,7 +25,7 @@ const StartBlock = (props) => {
                     4. Judging (J) or Perceiving (P)
                     <br />
                     <br />
-                    These preferences result in 16 possible personality types, such as ISTJ, ENFP, or INFJ, each with its own unique characteristics and tendencies. The MBTI is often used to gain insights into individual differences in how people perceive the world, make decisions, and interact with others. It can be a valuable tool for personal development, career counseling, and team-building activities.
+                    These preferences result in 16 possible personality types, such as ISTJ, ENFP, or INFJ, each with its own unique characteristics and tendencies. The MBTI is often used to gain insights into individual differences in how people perceive the world, make decisions, and interact with others. 
                 </span>
                 <button id="start-btn" class="button-54" onClick={()=>{props.handleStart(true)}}>START</button>
             </p></div>

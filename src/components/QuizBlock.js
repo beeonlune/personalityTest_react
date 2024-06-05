@@ -23,7 +23,7 @@ const QuestionsBlock = styled.div``;
 const ProgressBar = styled.div`
   max-width: 98%;
   width: ${props => props.progress}%;
-  height: 25px;
+  height: 1.3vw;
   background: #BAA6B8;
   border-radius: 20px;
   display: flex;
@@ -48,8 +48,7 @@ const AnswerButton = styled.label`
 `;
 const ResultBlock = styled.div`
   position: relative;
-  flex: 1;
-  top: 30px; 
+  top: 2vw; 
   width: 400px;
   left: 0.5vw; 
   background-color: white;
@@ -63,11 +62,12 @@ const ResultBlock = styled.div`
 `;
 const InformationBlock = styled.div`
   justify-content: space-between; 
-  position: relative;
-  left: 520px;
-  width: 500px;
-  height: 1000px;
-  bottom: 525px;
+  position: absolute;
+  top: 14.5vw;
+  left: 28vw;
+  width: 33vw;
+  height: auto;
+  bottom: 52vw;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 500;
@@ -77,12 +77,12 @@ const Text = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
   padding: 1vw;
   border-radius: 1vw;
-  max-width: 65%; 
+  width: 65%; 
   position: relative;
   left: -3vw;
   text-align: left;
   overflow: auto; 
-  max-height: 515px; 
+  height: 515px; 
   scrollbar-width: thin; 
   scrollbar-color: #d6dee1 transparent; 
   &::-webkit-scrollbar { 
@@ -93,7 +93,7 @@ const Text = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     background-color: black;
-    border-radius: 20px;
+    border-radius: 1vw;
     border: 6px solid transparent;
     background-clip: content-box;
   }
@@ -103,10 +103,10 @@ const Text = styled.div`
 `;
 const QuestionsContainer = styled.div`
 position: relative;
-width: 900px;
-height: 850px;
-left: 175px;
-top: 400px;
+width: 49vw;
+height: 840px;
+left: 9vw;
+top: 22vw;
 background: rgba(241, 226, 255, 0.7);
 backdrop-filter: blur(50px);
 border-radius: 20px;
@@ -199,7 +199,7 @@ const QuizBlock = () => {
       <div key={startIndex + index} className="question-block">
         <div className="question">{question}</div>
         <div className="answer-container">
-        <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "Yes"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-670px', fontSize: '20px', display: 'flex', alignItems: 'center' }}>
+        <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "Yes"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-37vw', fontSize: '20px', display: 'flex', alignItems: 'center' }}>
             <input 
               type="radio" 
               name={`answer-${index}`} 
@@ -209,7 +209,7 @@ const QuizBlock = () => {
             />
             Yes
           </AnswerButton>
-          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "No"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-1270px', fontSize: '20px', display: 'flex', alignItems: 'center'}}>
+          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "No"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-70vw', fontSize: '20px', display: 'flex', alignItems: 'center'}}>
             <input 
               type="radio"  
               name={`answer-${index}`} 
@@ -369,66 +369,66 @@ const QuizBlock = () => {
 export default QuizBlock;
 
 function calculateMBTI(answers) {
-    let result = '';
+  let result = '';
 
-    // Introversion/Extraversion
-    let IE_count = 0;
-    if (answers[0] == 'Yes') IE_count++;
-    if (answers[6] == 'Yes') IE_count++;
-    if (answers[12] == 'No') IE_count++;
-    if (answers[14] == 'Yes') IE_count++;
-    if (answers[18] == 'No') IE_count++;
-    result += (IE_count >= 3) ? 'E' : 'I';
+  // Introversion/Extraversion
+  let IE_count = 0;
+  if (answers[0] == 'Yes') IE_count++;
+  if (answers[6] == 'Yes') IE_count++;
+  if (answers[12] == 'No') IE_count++;
+  if (answers[14] == 'Yes') IE_count++;
+  if (answers[18] == 'No') IE_count++;
+  result += (IE_count >= 3) ? 'E' : 'I';
 
-    // Sensing/Intuition
-    let SN_count = 0;
-    if (answers[4] == 'Yes') SN_count++;
-    if (answers[9] == 'Yes') SN_count++;
-    if (answers[13] == 'Yes') SN_count++;
-    if (answers[17] == 'No') SN_count++;
-    if (answers[19] == 'Yes') SN_count++;
-    result += (SN_count >= 3) ? 'N' : 'S';
+  // Sensing/Intuition
+  let SN_count = 0;
+  if (answers[4] == 'Yes') SN_count++;
+  if (answers[9] == 'Yes') SN_count++;
+  if (answers[13] == 'Yes') SN_count++;
+  if (answers[17] == 'No') SN_count++;
+  if (answers[19] == 'Yes') SN_count++;
+  result += (SN_count >= 3) ? 'N' : 'S';
 
-    // Thinking/Feeling
-    let TF_count = 0;
-    if (answers[2] == 'Yes') TF_count++;
-    if (answers[3] == 'Yes') TF_count++;
-    if (answers[8] == 'Yes') TF_count++;
-    if (answers[10] == 'Yes') TF_count++;
-    if (answers[15] == 'No') TF_count++;
-    result += (TF_count >= 3) ? 'F' : 'T';
+  // Thinking/Feeling
+  let TF_count = 0;
+  if (answers[2] == 'Yes') TF_count++;
+  if (answers[3] == 'Yes') TF_count++;
+  if (answers[8] == 'Yes') TF_count++;
+  if (answers[10] == 'Yes') TF_count++;
+  if (answers[15] == 'No') TF_count++;
+  result += (TF_count >= 3) ? 'F' : 'T';
 
-    // Judging/Perceiving
-    let JP_count = 0;
-    if (answers[1] == 'No') JP_count++;
-    if (answers[5] == 'No') JP_count++;
-    if (answers[7] == 'No') JP_count++;
-    if (answers[11] == 'Yes') JP_count++;
-    if (answers[16] == 'No') JP_count++;
-    result += (JP_count >= 3) ? 'P' : 'J';
+  // Judging/Perceiving
+  let JP_count = 0;
+  if (answers[1] == 'No') JP_count++;
+  if (answers[5] == 'No') JP_count++;
+  if (answers[7] == 'No') JP_count++;
+  if (answers[11] == 'Yes') JP_count++;
+  if (answers[16] == 'No') JP_count++;
+  result += (JP_count >= 3) ? 'P' : 'J';
 
-    return result;
+  return result;
 }
 
 const questions = [
-    "You regularly make new friends.",
-    "You prefer to do your chores before allowing yourself to relax.",
-    "When making decisions, you focus more on how the affected people might feel than on what is most logical or efficient.",
-    "You are willing to bend the truth to make someone feel better.",
-    "You enjoy experimenting with new and untested approaches.",
-    "You like to use organizing tools like schedules and lists.",
-    "You enjoy participating in team-based activities.",
-    "Your living and working spaces are clean and organized.",
-    "You are more likely to rely on emotional intuition than logical reasoning when making a choice.",
-    "You become bored or lose interest when the discussion gets highly theoretical.",
-    "You usually feel more persuaded by what resonates emotionally with you than by factual arguments.",
-    "You often allow the day to unfold without any schedule at all.",
-    "You enjoy solitary hobbies or activities more than group ones.",
-    "You actively seek out new experiences and knowledge areas to explore.",
-    "You feel comfortable just walking up to someone you find interesting and striking up a conversation.",
-    "You favor efficiency in decisions, even if it means disregarding some emotional aspects.",
-    "You prioritize and plan tasks effectively, often completing them well before the deadline.",
-    "You are not too interested in discussions about various interpretations of creative works.",
-    "You find the idea of networking or promoting yourself to strangers very daunting.",
-    "Complex and novel ideas excite you more than simple and straightforward ones."
+  "You regularly make new friends.",
+  "You prefer to do your chores before allowing yourself to relax.",
+  "When making decisions, you focus more on how the affected people might feel than on what is most logical or efficient.",
+  "You are willing to bend the truth to make someone feel better.",
+  "You enjoy experimenting with new and untested approaches.",
+  "You like to use organizing tools like schedules and lists.",
+  "You enjoy participating in team-based activities.",
+  "Your living and working spaces are clean and organized.",
+  "You are more likely to rely on emotional intuition than logical reasoning when making a choice.",
+  "You become bored or lose interest when the discussion gets highly theoretical.",
+  "You usually feel more persuaded by what resonates emotionally with you than by factual arguments.",
+  "You often allow the day to unfold without any schedule at all.",
+  "You enjoy solitary hobbies or activities more than group ones.",
+  "You actively seek out new experiences and knowledge areas to explore.",
+  "You feel comfortable just walking up to someone you find interesting and striking up a conversation.",
+  "You favor efficiency in decisions, even if it means disregarding some emotional aspects.",
+  "You prioritize and plan tasks effectively, often completing them well before the deadline.",
+  "You are not too interested in discussions about various interpretations of creative works.",
+  "You find the idea of networking or promoting yourself to strangers very daunting.",
+  "Complex and novel ideas excite you more than simple and straightforward ones."
 ];
