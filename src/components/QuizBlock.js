@@ -17,11 +17,13 @@ import ISFJ from './ISFJ';
 import ISFP from './ISFP';
 import ISTJ from './ISTJ';
 import ISTP from './ISTP';
+import compPic from './comp_pic.png';
+import im13 from './heart.png';
 
 const Container = styled.div``;
 const QuestionsBlock = styled.div``;
 const ProgressBar = styled.div`
-  max-width: 98%;
+  max-width: 97%;
   width: ${props => props.progress}%;
   height: 1.3vw;
   background: #BAA6B8;
@@ -29,6 +31,95 @@ const ProgressBar = styled.div`
   display: flex;
   position: relative;
   margin: 0 10px;
+`;
+const Rectangle30 = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: absolute;
+  width: 622px;
+  height: 641px;
+  left: 930px;
+  top: -100px;
+  border: 10px solid #F1E2FF;
+  border-radius: 20px;
+  transform: rotate(90deg);
+`;
+const Rectangle31 = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 830px;
+  height: 651px;
+  left: 860px;
+  top: 530px;
+
+  border: 10px solid #F1E2FF;
+  border-radius: 20px;
+  transform: rotate(90deg);
+`;
+const Rectangle29 = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  width: 243px;
+  height: 752px;
+  left: 180px;
+  top: -449px;
+  border: 10px solid #F1E2FF;
+  border-radius: 20px;
+`;
+const Rectangle28 = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 33px;
+  height: 608px;
+  left: 31vw;
+  top: -80px;
+  display: flex;
+
+  background: #F1E2FF;
+  transform: rotate(-90deg);
+`;
+const Image13 = styled.div`
+  position: absolute;
+  width: 983px;
+  height: 488px;
+  left: 730px;
+  top: 81px;
+  background-image: url(${im13});
+  background-repeat: no-repeat;
+`;
+const CompPic = styled.div`
+  position: absolute;
+  width: 536px;
+  height: 456px;
+  left: 1020px;
+  top: 650px;
+  background-image: url(${compPic});
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+const TestText = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 842px;
+  height: 141px;
+  /*left: 15.2vw;*/
+  left: 280px;
+  top: 80px;
+
+  font-family: 'Jost';
+  font-style: bold;
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 144px;
+
+  color: #000000;
 `;
 const AnswerButton = styled.label`
   display: inline-block;
@@ -48,9 +139,10 @@ const AnswerButton = styled.label`
 `;
 const ResultBlock = styled.div`
   position: relative;
-  top: 2vw; 
-  width: 400px;
+  top: 30px; 
+  width: 350px;
   left: 0.5vw; 
+  height: 590px;
   background-color: white;
   color: black;
   padding: 1vw;
@@ -63,16 +155,14 @@ const ResultBlock = styled.div`
 const InformationBlock = styled.div`
   justify-content: space-between; 
   position: absolute;
-  top: 14.5vw;
-  left: 28vw;
-  width: 33vw;
-  height: auto;
-  bottom: 52vw;
+  top: 260px;
+  left: 465px;
+  width: 405px;
+  height: 590px;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 500;
 `;
-
 const Text = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
   padding: 1vw;
@@ -82,7 +172,7 @@ const Text = styled.div`
   left: -3vw;
   text-align: left;
   overflow: auto; 
-  height: 515px; 
+  height: 590px; 
   scrollbar-width: thin; 
   scrollbar-color: #d6dee1 transparent; 
   &::-webkit-scrollbar { 
@@ -103,10 +193,11 @@ const Text = styled.div`
 `;
 const QuestionsContainer = styled.div`
 position: relative;
-width: 49vw;
-height: 840px;
+/*width: 39vw;*/
+width: 720px;
+height: 890px;
 left: 9vw;
-top: 22vw;
+top: 20vw;
 background: rgba(241, 226, 255, 0.7);
 backdrop-filter: blur(50px);
 border-radius: 20px;
@@ -199,7 +290,7 @@ const QuizBlock = () => {
       <div key={startIndex + index} className="question-block">
         <div className="question">{question}</div>
         <div className="answer-container">
-        <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "Yes"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-37vw', fontSize: '20px', display: 'flex', alignItems: 'center' }}>
+        <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "Yes"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-27vw', fontSize: '20px', display: 'flex', alignItems: 'center' }}>
             <input 
               type="radio" 
               name={`answer-${index}`} 
@@ -209,7 +300,7 @@ const QuizBlock = () => {
             />
             Yes
           </AnswerButton>
-          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "No"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-70vw', fontSize: '20px', display: 'flex', alignItems: 'center'}}>
+          <AnswerButton checked={answers[currentPage * questionsPerPage + index] === "No"} style={{ width: '40px', height: '20px', lineHeight: '41px', borderRadius: '25px 25px 25px 25px', border: '3px solid rgba(186, 166, 184, 1)', marginLeft: '-50vw', fontSize: '20px', display: 'flex', alignItems: 'center'}}>
             <input 
               type="radio"  
               name={`answer-${index}`} 
@@ -229,6 +320,13 @@ const QuizBlock = () => {
 
   return (
     <Container>
+      <Rectangle29></Rectangle29>
+      <Rectangle28></Rectangle28>
+      <TestText>Personality test</TestText>
+      <Image13></Image13>
+      <Rectangle30></Rectangle30>
+      <Rectangle31></Rectangle31>
+      <CompPic></CompPic>
       <QuestionsContainer>
         {!isFinished ? (
           <QuestionsBlock>
@@ -304,7 +402,7 @@ const QuizBlock = () => {
                 )}
                 </div>
                 <div id="link" style={{ border: "1px solid #000", padding: "10px" }}>
-                Want to learn more about what this means? You can consider visiting this source for more information: <a href="https://www.16personalities.com/">https://www.16personalities.com/</a>
+                Want to learn more about what this means? You can consider visiting this source for more information: <a href="https://www.16personalities.com/">16personalities.com</a>
                 </div>
             </ResultBlock>
             <InformationBlock>

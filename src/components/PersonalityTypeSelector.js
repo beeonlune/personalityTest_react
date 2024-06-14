@@ -12,7 +12,7 @@ const PersonalityTypeTable = styled.div`
   border-radius: 10px;
   max-width: 600px;
   position: relative;
-  left: 7vw;
+  left: 2vw;
   top: 20px;
   font-family: 'Jost';
   font-style: normal;
